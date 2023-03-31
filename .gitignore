@@ -1,7 +1,5 @@
 HELP.md
 target/
-logs/
-*.log.*
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -38,3 +36,5 @@ build/
 /.mvn/
 /spring-boot/service-demo/mvnw
 /spring-boot/service-demo/mvnw.cmd
+/logs/
+.DS_Store
