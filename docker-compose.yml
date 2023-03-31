@@ -98,6 +98,13 @@ services:
       - mysqldb
     volumes:
       - ./logs:/app/logs
+  web-demo:
+    image: irushu/web-demo
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3000
 volumes:
   db:
     driver: local
