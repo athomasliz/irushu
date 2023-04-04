@@ -29,7 +29,7 @@ server:
 
 logging:
   level:
-    root:  error
+    root: error
     org.springframework:  info
     org.irushu.login:  info
 

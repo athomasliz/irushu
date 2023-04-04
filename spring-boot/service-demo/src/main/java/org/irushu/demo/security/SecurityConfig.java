@@ -13,6 +13,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -44,7 +45,6 @@ public class SecurityConfig{
             .and()
             .authenticationManager(new CustomAuthenticationManager())
             .authorizeHttpRequests((authz) -> authz
-                .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers( AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated()
             ).addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -54,17 +54,13 @@ public class SecurityConfig{
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
-        final CorsConfiguration configuration = new CorsConfiguration();
-
-        configuration.setAllowedOrigins(List.of("https://locahost:3000", "https://locahost:3001")); // www - obligatory
-//        configuration.setAllowedOrigins(ImmutableList.of("*"));  //set access from all domains
-        configuration.setAllowedMethods(List.of("POST"));
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(List.of("Authorization", "Cache-Control", "Content-Type"));
-
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOriginPattern(CorsConfiguration.ALL);
+        configuration.setAllowedMethods(List.of(CorsConfiguration.ALL));
+        configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
-
         return source;
     }
+
 }

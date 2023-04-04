@@ -52,7 +52,7 @@ public class DemoController {
     {
         kafkaProducerService.send(demoRequest);
         DemoResponse demoResponse = new DemoResponse();
-        demoResponse.setOutput("Message successfully sent to Kafka Topic");
+        demoResponse.setOutput("Message " + demoRequest.getInput() +  " successfully sent to Kafka Topic");
         return demoResponse;
     }
 
