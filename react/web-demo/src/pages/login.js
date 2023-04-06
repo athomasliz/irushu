@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import logo from '../logo.svg';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import axios from "axios";
 
 const loginAxios = axios.create({
@@ -64,21 +65,49 @@ const LoginPage = () => {
     const [kafkaInput, setKafkaInput] = useState('ABCDE')
     const [kafkaOutput, setKafkaOutput] = useState('')
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <div>Step 0: Login to get JWT token</div><br/>
-                <div>Username: <input type="text" value={username} onChange={ e => setUsername(e.target.value)}></input></div><br/>
-                <div>Password: <input type="password" value={password} onChange={ e => setPassword(e.target.value)}></input></div><br/>
-                <input type="button" value="Login" onClick={ () => loginAction(username, password, setToken) }></input><br/>
-                <div>JWT token <textarea value={token} cols="100" rows="6" readOnly/></div><br/>
+        <div className="page container-fluid p-5" style={{maxWidth: "700px"}}>
 
-                <hr style={{width: "100%"}}/>
-                <div>Test 1: Call Kafka</div><br/> 
-                <div>Messsage to send: <input type="text" value={kafkaInput} onChange={ e => setKafkaInput(e.target.value)}></input></div><br/>
-                <input type="button" value="Call Kafka" onClick={ () => kafkaAction(kafkaInput, token, setKafkaOutput) }></input><br/>
-                <div>Result: <textarea value={kafkaOutput} cols="100" rows="1" readOnly/></div><br/>
-            </header>
+            <div className="card shadow mb-5">
+                <div className="card-header"> 
+                    <div>Step 0: Login</div>
+                </div>
+                <div className="card-body">
+                    <div className="row">
+                        <div className="col-4 py-2 text-end">Username: </div>
+                        <div className="col-8 py-2"><Form.Control type="text" onChange={ e => setUsername(e.target.value)} value={username} /></div>
+                        <div className="col-4 py-2 text-end">Password: </div>
+                        <div className="col-8 py-2"><Form.Control type="password" onChange={ e => setPassword(e.target.value)} value={password} /></div>
+                    </div>
+                    <div className="d-flex justify-content-center mt-3"> 
+                        <Button variant="primary" type="button" onClick={ () => loginAction(username, password, setToken) }>Login</Button>
+                    </div>
+                </div>
+                <div className="card-footer">
+                    <div><u>JWT Token</u></div>
+                    <div style={{color:"green"}}>{token}</div>
+                </div>
+            </div>
+
+            <div className="card shadow">
+                <div className="card-header"> 
+                    <div>Test 1: Send message to Kafka</div>
+                </div>
+                <div className="card-body">
+                    <div className="row">
+                        <div className="col-3 py-2 text-end">Message:</div> 
+                        <div className="col-9 py-2"><Form.Control type="text" onChange={ e => setKafkaInput(e.target.value)} value={kafkaInput} /></div>
+                    </div>
+                    <div className="d-flex justify-content-center mt-3"> 
+                        <Button variant="primary" type="button" onClick={ () => kafkaAction(kafkaInput, token, setKafkaOutput) }>Send to Kafka</Button>
+                    </div>
+                </div>
+                <div className="card-footer">
+                    <div><u>Result</u></div>
+                    <div style={{color:"green"}}>{kafkaOutput}</div>
+                </div>
+            </div>
+
+
         </div>
     );
 }
