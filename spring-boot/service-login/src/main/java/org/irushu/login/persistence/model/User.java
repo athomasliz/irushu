@@ -6,6 +6,17 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="user")
 public class User {
+
+    public User() {
+    }
+
+    public User(Integer id, String username, String password, String role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.role = role;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(nullable=false)

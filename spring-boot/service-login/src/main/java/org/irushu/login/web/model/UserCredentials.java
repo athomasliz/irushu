@@ -3,6 +3,12 @@ package org.irushu.login.web.model;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 public class UserCredentials {
+
+    public UserCredentials(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     @Schema(example= "thomasli", required = false, title="User name")
     private String username;
     @Schema(example= "password", required = false, title="password")

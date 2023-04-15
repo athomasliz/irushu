@@ -23,7 +23,9 @@ public class JWTService {
     // Generate secret key. Only for the demonstration
     // You should read it from the application configuration
 
-    static Key key = null;
+    //static Key key = null;
+    static Key key = Keys.secretKeyFor
+            (SignatureAlgorithm.HS256);
 
     static {
         try {
@@ -46,6 +48,7 @@ public class JWTService {
                 .setExpiration(new Date(System.currentTimeMillis()  + EXPIRATIONTIME))
                 .signWith(key)
                 .compact();
+        System.out.println(token);
         return token;
     }
 
