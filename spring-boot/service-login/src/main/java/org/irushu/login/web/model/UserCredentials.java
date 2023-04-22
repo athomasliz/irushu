@@ -1,33 +1,19 @@
 package org.irushu.login.web.model;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class UserCredentials {
 
-    public UserCredentials(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    @Schema(example= "thomasli", required = false, title="User name")
+    @Schema(example= "thomasli", title="User name")
     private String username;
-    @Schema(example= "password", required = false, title="password")
+
+    @Schema(example= "password", title="password")
     private String password;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
 }

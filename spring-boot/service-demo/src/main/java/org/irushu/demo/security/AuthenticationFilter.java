@@ -15,9 +15,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
 public class AuthenticationFilter extends OncePerRequestFilter {
+
     @Autowired
     private JWTService jwtService;
-
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, java.io.IOException {

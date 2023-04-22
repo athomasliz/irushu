@@ -1,8 +1,16 @@
 package org.irushu.login.web.swagger;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Component
 @ConfigurationProperties("swagger")
 public class SwaggerProperties {
@@ -13,27 +21,4 @@ public class SwaggerProperties {
 
     private String applicationDescription;
 
-    public String getApplicationName() {
-        return applicationName;
-    }
-
-    public void setApplicationName(String applicationName) {
-        this.applicationName = applicationName;
-    }
-
-    public String getApplicationVersion() {
-        return applicationVersion;
-    }
-
-    public void setApplicationVersion(String applicationVersion) {
-        this.applicationVersion = applicationVersion;
-    }
-
-    public String getApplicationDescription() {
-        return applicationDescription;
-    }
-
-    public void setApplicationDescription(String applicationDescription) {
-        this.applicationDescription = applicationDescription;
-    }
 }

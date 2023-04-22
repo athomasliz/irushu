@@ -1,14 +1,13 @@
 package org.irushu.demo.web.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import org.irushu.demo.service.MysqlService;
+import lombok.extern.slf4j.Slf4j;
 import org.irushu.demo.service.KafkaProducerService;
+import org.irushu.demo.service.MysqlService;
 import org.irushu.demo.service.RedisCounterService;
 import org.irushu.demo.web.model.DemoRequest;
 import org.irushu.demo.web.model.DemoResponse;
-import io.swagger.v3.oas.annotations.Operation;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/demo/")
 
 public class DemoController {
-    private static Logger logger = LoggerFactory.getLogger(DemoController.class);
+
     @Autowired
     private MysqlService mysqlService;
     @Autowired
