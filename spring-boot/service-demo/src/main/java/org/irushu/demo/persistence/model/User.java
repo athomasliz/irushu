@@ -1,13 +1,9 @@
 package org.irushu.demo.persistence.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
+@Data
 @Entity
 @Table(name="user")
 public class User {
