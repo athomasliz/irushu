@@ -14,6 +14,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.security.auth.Subject;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -26,9 +27,11 @@ import static org.mockito.Mockito.*;
 public class ControllerTests {
 
     @Mock
-    JWTService jwtService = new JWTService();
+    JWTService jwtService;
+
     @Mock
     AuthenticationManager authenticationManager;
+
     @InjectMocks
     private LoginController loginController;
 
@@ -47,22 +50,22 @@ public class ControllerTests {
 
             @Override
             public Collection<? extends GrantedAuthority> getAuthorities() {
-                return null;
+                return new ArrayList<>();
             }
 
             @Override
             public Object getCredentials() {
-                return null;
+                return "password";
             }
 
             @Override
             public Object getDetails() {
-                return null;
+                return "details";
             }
 
             @Override
             public Object getPrincipal() {
-                return null;
+                return "thomasli";
             }
 
             @Override
@@ -76,12 +79,13 @@ public class ControllerTests {
             }
         });
 
+        when(jwtService.getToken(any())).thenReturn(new JWTService().getToken(any()));
+
         ResponseEntity entity = loginController.getToken(new UserCredentials("thomasli", "password"));
-        System.out.println(entity.getHeaders().get("Authorization"));
+
         verify(jwtService,times(1)).getToken(anyString());
 
         assertNotEquals( List.of("Bearer null"), entity.getHeaders().get("Authorization"));
     }
-
 
 }

@@ -21,6 +21,8 @@ public class LoginController {
     @Autowired
     private JWTService jwtService;
 
+
+
     @Autowired
     AuthenticationManager authenticationManager;
 
@@ -36,8 +38,6 @@ public class LoginController {
 
        // Generate token
        String jwts = jwtService.getToken(auth.getName());
-
-       log.info(jwts);
 
        return ResponseEntity.ok()
                 .header(HttpHeaders.AUTHORIZATION, "Bearer " + jwts)
