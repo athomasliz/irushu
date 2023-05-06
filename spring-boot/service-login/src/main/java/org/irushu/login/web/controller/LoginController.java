@@ -21,8 +21,6 @@ public class LoginController {
     @Autowired
     private JWTService jwtService;
 
-
-
     @Autowired
     AuthenticationManager authenticationManager;
 
